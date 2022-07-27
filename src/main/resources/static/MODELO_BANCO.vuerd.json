@@ -1,0 +1,1015 @@
+{
+  "canvas": {
+    "version": "2.2.11",
+    "width": 2000,
+    "height": 2000,
+    "scrollTop": -103,
+    "scrollLeft": -40,
+    "zoomLevel": 0.8,
+    "show": {
+      "tableComment": true,
+      "columnComment": true,
+      "columnDataType": true,
+      "columnDefault": true,
+      "columnAutoIncrement": false,
+      "columnPrimaryKey": true,
+      "columnUnique": false,
+      "columnNotNull": true,
+      "relationship": true
+    },
+    "database": "PostgreSQL",
+    "databaseName": "",
+    "canvasType": "@vuerd/builtin-sql-ddl",
+    "language": "GraphQL",
+    "tableCase": "pascalCase",
+    "columnCase": "camelCase",
+    "highlightTheme": "VS2015",
+    "bracketType": "none",
+    "setting": {
+      "relationshipDataTypeSync": true,
+      "relationshipOptimization": false,
+      "columnOrder": [
+        "columnName",
+        "columnDataType",
+        "columnNotNull",
+        "columnUnique",
+        "columnAutoIncrement",
+        "columnDefault",
+        "columnComment"
+      ]
+    },
+    "pluginSerializationMap": {}
+  },
+  "table": {
+    "tables": [
+      {
+        "name": "bloco_aula",
+        "comment": "",
+        "columns": [
+          {
+            "name": "id",
+            "comment": "",
+            "dataType": "bigint",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": true,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": true,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "2d697264-c7a5-4d3f-9d2d-c7b945116e9b"
+          },
+          {
+            "name": "id_curso",
+            "comment": "",
+            "dataType": "bigint",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": true,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "1c4212e7-4a06-4f50-8113-bf09b94fe816"
+          },
+          {
+            "name": "disciplina",
+            "comment": "",
+            "dataType": "varchar",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "c91af205-8436-4bd2-882d-aece69952ca5"
+          },
+          {
+            "name": "turma",
+            "comment": "",
+            "dataType": "varchar",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "ce8ea989-b54f-4fc4-a02a-1cf33f1d3f65"
+          },
+          {
+            "name": "dia_semana",
+            "comment": "",
+            "dataType": "varchar",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 72.8271484375,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "b9e5163b-6b92-4c28-b86e-3a36694282af"
+          },
+          {
+            "name": "id_horario_inicio",
+            "comment": "",
+            "dataType": "bigint",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": true,
+              "pfk": false,
+              "widthName": 96.6689453125,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "6fe6a93d-e761-4c66-80a6-ae8999a24b83"
+          },
+          {
+            "name": "id_horario_fim",
+            "comment": "",
+            "dataType": "bigint",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": true,
+              "pfk": false,
+              "widthName": 84.37353515625,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "48bd357f-72d4-4f9a-8d24-022104478019"
+          },
+          {
+            "name": "id_sala_especifica",
+            "comment": "",
+            "dataType": "bigint",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": true,
+              "pfk": false,
+              "widthName": 108.234375,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "e5ac97ac-81d4-4d71-9c98-d1f197684b74"
+          },
+          {
+            "name": "id_sala_atual",
+            "comment": "",
+            "dataType": "bigint",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": true,
+              "pfk": false,
+              "widthName": 78.6162109375,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "4d599c6e-9012-4c43-8908-f42dfa585b24"
+          }
+        ],
+        "ui": {
+          "active": false,
+          "left": 86,
+          "top": 110,
+          "zIndex": 59,
+          "widthName": 64.88623046875,
+          "widthComment": 60
+        },
+        "visible": true,
+        "id": "470f28b8-b119-4d97-86b7-776b0167b7f7"
+      },
+      {
+        "name": "atributo_sala",
+        "comment": "",
+        "columns": [
+          {
+            "name": "id",
+            "comment": "",
+            "dataType": "bigint",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": true,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": true,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "5db65a9f-8ccf-4052-94b2-2b2eb27f764a"
+          },
+          {
+            "name": "nome",
+            "comment": "",
+            "dataType": "varchar",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "5ff2aaf2-9dbd-4098-8c4a-e97f2ad9cbcc"
+          }
+        ],
+        "ui": {
+          "active": false,
+          "left": 980.75,
+          "top": 377,
+          "zIndex": 22,
+          "widthName": 76.43896484375,
+          "widthComment": 60
+        },
+        "visible": true,
+        "id": "54666942-572d-4f0b-a207-c127a82ad9b3"
+      },
+      {
+        "name": "usuario",
+        "comment": "",
+        "columns": [
+          {
+            "name": "id",
+            "comment": "",
+            "dataType": "bigint",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": true,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": true,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "5a2e8512-1a73-4d40-9a1e-2ceb39c2def4"
+          },
+          {
+            "name": "is_admin",
+            "comment": "",
+            "dataType": "boolean",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "7d35804a-6bf3-41f3-8871-d88227e265df"
+          }
+        ],
+        "ui": {
+          "active": false,
+          "left": 1388.7775,
+          "top": 382.528,
+          "zIndex": 15,
+          "widthName": 60,
+          "widthComment": 60
+        },
+        "visible": true,
+        "id": "0523bb50-1db5-442e-a628-f148ee0fb1a9"
+      },
+      {
+        "name": "horario_aula",
+        "comment": "",
+        "columns": [
+          {
+            "name": "id",
+            "comment": "",
+            "dataType": "bigint",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": true,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": true,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "37c2a126-703d-49c4-a884-c257d5cbeced"
+          },
+          {
+            "name": "nome",
+            "comment": "",
+            "dataType": "varchar",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "0275a17b-0878-4c97-a1ed-b0a2ec9ca3f2"
+          }
+        ],
+        "ui": {
+          "active": false,
+          "left": 1040.8053,
+          "top": 176.5834,
+          "zIndex": 4,
+          "widthName": 74.2744140625,
+          "widthComment": 60
+        },
+        "visible": true,
+        "id": "3792580d-dc28-4e94-beb2-81a20441b021"
+      },
+      {
+        "name": "curso",
+        "comment": "",
+        "columns": [
+          {
+            "name": "id",
+            "comment": "",
+            "dataType": "bigint",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": true,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": true,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "b7d1085e-2849-4d56-b969-17d64caa78d3"
+          },
+          {
+            "name": "nome",
+            "comment": "",
+            "dataType": "varchar",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "1ac0b54b-22a3-4f19-bc32-bfa82e2dcf7f"
+          }
+        ],
+        "ui": {
+          "active": false,
+          "left": 995.5,
+          "top": 0,
+          "zIndex": 40,
+          "widthName": 60,
+          "widthComment": 60
+        },
+        "visible": true,
+        "id": "a080586f-9986-4f98-96de-8aa3e905c96c"
+      },
+      {
+        "name": "sala_atributo_sala",
+        "comment": "",
+        "columns": [
+          {
+            "name": "id_atributo_sala",
+            "comment": "",
+            "dataType": "bigint",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": true,
+              "pfk": false,
+              "widthName": 93.787109375,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "6ec8e656-3c36-48d6-a86d-29b4b101bc5a"
+          },
+          {
+            "name": "id_sala",
+            "comment": "",
+            "dataType": "bigint",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": true,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "72124417-ff16-4acd-a8a1-60bef3397eae"
+          }
+        ],
+        "ui": {
+          "active": false,
+          "left": 606.5,
+          "top": 565,
+          "zIndex": 7,
+          "widthName": 107.51708984375,
+          "widthComment": 60
+        },
+        "visible": true,
+        "id": "a11d6108-d3a5-4f1c-bc35-73ae8640e801"
+      },
+      {
+        "name": "sala",
+        "comment": "",
+        "columns": [
+          {
+            "name": "id",
+            "comment": "",
+            "dataType": "bigint",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": true,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": true,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "10f2217c-c1c9-4eb4-a8bf-bf8ba3a0aee6"
+          },
+          {
+            "name": "nome",
+            "comment": "",
+            "dataType": "varchar",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "5148a661-2876-450f-8df8-0515a5975abd"
+          },
+          {
+            "name": "capacidade",
+            "comment": "",
+            "dataType": "integer",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 68.498046875,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "4229363f-cf3f-4821-b6f9-3e3871598eb1"
+          },
+          {
+            "name": "is_exclusiva",
+            "comment": "",
+            "dataType": "boolean",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 72.08447265625,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "d45236c9-3f77-4dfe-b4c6-21407cdb281c"
+          },
+          {
+            "name": "is_liberar",
+            "comment": "",
+            "dataType": "boolean",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": false
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": false,
+              "pfk": false,
+              "widthName": 60,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "5688271c-a5a9-47f3-8c52-5b5829a53ebd"
+          }
+        ],
+        "ui": {
+          "active": false,
+          "left": 65.3056,
+          "top": 526.5002,
+          "zIndex": 34,
+          "widthName": 60,
+          "widthComment": 60
+        },
+        "visible": true,
+        "id": "9e1a284d-11e7-4526-a65f-613c3577f674"
+      },
+      {
+        "name": "bloco_aula_atributo_sala",
+        "comment": "",
+        "columns": [
+          {
+            "name": "id_bloco_aula",
+            "comment": "",
+            "dataType": "bigint",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": true,
+              "pfk": false,
+              "widthName": 82.234375,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "20e55eef-9ef5-4c67-8599-58951ccaa34f"
+          },
+          {
+            "name": "id_atributo_sala",
+            "comment": "",
+            "dataType": "bigint",
+            "default": "",
+            "option": {
+              "autoIncrement": false,
+              "primaryKey": false,
+              "unique": false,
+              "notNull": true
+            },
+            "ui": {
+              "active": false,
+              "pk": false,
+              "fk": true,
+              "pfk": false,
+              "widthName": 93.787109375,
+              "widthComment": 60,
+              "widthDataType": 60,
+              "widthDefault": 60
+            },
+            "id": "74d03286-e8ed-4efc-b46f-2aad92cb54a8"
+          }
+        ],
+        "ui": {
+          "active": false,
+          "left": 524.25,
+          "top": 384.25,
+          "zIndex": 25,
+          "widthName": 146.55517578125,
+          "widthComment": 60
+        },
+        "visible": true,
+        "id": "c47856d4-466f-459a-a71a-b7e58bfe45de"
+      }
+    ],
+    "indexes": []
+  },
+  "memo": {
+    "memos": []
+  },
+  "relationship": {
+    "relationships": [
+      {
+        "identification": false,
+        "relationshipType": "OneN",
+        "startRelationshipType": "Dash",
+        "start": {
+          "tableId": "a080586f-9986-4f98-96de-8aa3e905c96c",
+          "columnIds": [
+            "b7d1085e-2849-4d56-b969-17d64caa78d3"
+          ],
+          "x": 995.5,
+          "y": 55,
+          "direction": "left"
+        },
+        "end": {
+          "tableId": "470f28b8-b119-4d97-86b7-776b0167b7f7",
+          "columnIds": [
+            "1c4212e7-4a06-4f50-8113-bf09b94fe816"
+          ],
+          "x": 481.234375,
+          "y": 205.0625,
+          "direction": "right"
+        },
+        "constraintName": "fk_curso_to_bloco_aula",
+        "visible": true,
+        "id": "2df5c168-80df-4d18-ac8f-293d4cc3f9da"
+      },
+      {
+        "identification": false,
+        "relationshipType": "OneN",
+        "startRelationshipType": "Dash",
+        "start": {
+          "tableId": "3792580d-dc28-4e94-beb2-81a20441b021",
+          "columnIds": [
+            "37c2a126-703d-49c4-a884-c257d5cbeced"
+          ],
+          "x": 1040.8053,
+          "y": 204.0834,
+          "direction": "left"
+        },
+        "end": {
+          "tableId": "470f28b8-b119-4d97-86b7-776b0167b7f7",
+          "columnIds": [
+            "6fe6a93d-e761-4c66-80a6-ae8999a24b83"
+          ],
+          "x": 481.234375,
+          "y": 268.4375,
+          "direction": "right"
+        },
+        "constraintName": "fk_horario_aula_to_bloco_aula",
+        "visible": true,
+        "id": "143ff1a5-ef76-4f9d-8f25-c9b80ef90a19"
+      },
+      {
+        "identification": false,
+        "relationshipType": "OneN",
+        "startRelationshipType": "Dash",
+        "start": {
+          "tableId": "3792580d-dc28-4e94-beb2-81a20441b021",
+          "columnIds": [
+            "37c2a126-703d-49c4-a884-c257d5cbeced"
+          ],
+          "x": 1040.8053,
+          "y": 259.0834,
+          "direction": "left"
+        },
+        "end": {
+          "tableId": "470f28b8-b119-4d97-86b7-776b0167b7f7",
+          "columnIds": [
+            "48bd357f-72d4-4f9a-8d24-022104478019"
+          ],
+          "x": 481.234375,
+          "y": 331.8125,
+          "direction": "right"
+        },
+        "constraintName": "fk_horario_aula_to_bloco_aula",
+        "visible": true,
+        "id": "de4f9ba4-cc39-4310-a5f0-d3749edf9e22"
+      },
+      {
+        "identification": false,
+        "relationshipType": "OneN",
+        "startRelationshipType": "Dash",
+        "start": {
+          "tableId": "54666942-572d-4f0b-a207-c127a82ad9b3",
+          "columnIds": [
+            "5db65a9f-8ccf-4052-94b2-2b2eb27f764a"
+          ],
+          "x": 980.75,
+          "y": 459.5,
+          "direction": "left"
+        },
+        "end": {
+          "tableId": "a11d6108-d3a5-4f1c-bc35-73ae8640e801",
+          "columnIds": [
+            "6ec8e656-3c36-48d6-a86d-29b4b101bc5a"
+          ],
+          "x": 987.287109375,
+          "y": 620,
+          "direction": "right"
+        },
+        "constraintName": "fk_atributo_sala_to_sala_especificidade_sala",
+        "visible": true,
+        "id": "a46cf43a-3319-48f7-8376-5f2e2a7b9b0f"
+      },
+      {
+        "identification": false,
+        "relationshipType": "OneN",
+        "startRelationshipType": "Ring",
+        "start": {
+          "tableId": "9e1a284d-11e7-4526-a65f-613c3577f674",
+          "columnIds": [
+            "10f2217c-c1c9-4eb4-a8bf-bf8ba3a0aee6"
+          ],
+          "x": 155.0767181640625,
+          "y": 526.5002,
+          "direction": "top"
+        },
+        "end": {
+          "tableId": "470f28b8-b119-4d97-86b7-776b0167b7f7",
+          "columnIds": [
+            "4d599c6e-9012-4c43-8908-f42dfa585b24"
+          ],
+          "x": 184.80859375,
+          "y": 363.5,
+          "direction": "bottom"
+        },
+        "constraintName": "fk_sala_to_bloco_aula",
+        "visible": true,
+        "id": "b4461148-af42-41ce-bd60-cd01a05514c7"
+      },
+      {
+        "identification": false,
+        "relationshipType": "OneN",
+        "startRelationshipType": "Ring",
+        "start": {
+          "tableId": "9e1a284d-11e7-4526-a65f-613c3577f674",
+          "columnIds": [
+            "10f2217c-c1c9-4eb4-a8bf-bf8ba3a0aee6"
+          ],
+          "x": 334.6189544921875,
+          "y": 526.5002,
+          "direction": "top"
+        },
+        "end": {
+          "tableId": "470f28b8-b119-4d97-86b7-776b0167b7f7",
+          "columnIds": [
+            "e5ac97ac-81d4-4d71-9c98-d1f197684b74"
+          ],
+          "x": 382.42578125,
+          "y": 363.5,
+          "direction": "bottom"
+        },
+        "constraintName": "fk_sala_to_bloco_aula",
+        "visible": true,
+        "id": "e9b4f852-9a4b-4734-a7c1-aadb56efa2ea"
+      },
+      {
+        "identification": false,
+        "relationshipType": "OneN",
+        "startRelationshipType": "Dash",
+        "start": {
+          "tableId": "9e1a284d-11e7-4526-a65f-613c3577f674",
+          "columnIds": [
+            "10f2217c-c1c9-4eb4-a8bf-bf8ba3a0aee6"
+          ],
+          "x": 424.39007265625,
+          "y": 612.2502,
+          "direction": "right"
+        },
+        "end": {
+          "tableId": "a11d6108-d3a5-4f1c-bc35-73ae8640e801",
+          "columnIds": [
+            "72124417-ff16-4acd-a8a1-60bef3397eae"
+          ],
+          "x": 606.5,
+          "y": 620,
+          "direction": "left"
+        },
+        "constraintName": "fk_sala_to_sala_especificidade_sala",
+        "visible": true,
+        "id": "3daae8a4-5045-482b-89f6-0d01c60f455a"
+      },
+      {
+        "identification": false,
+        "relationshipType": "OneN",
+        "startRelationshipType": "Dash",
+        "start": {
+          "tableId": "470f28b8-b119-4d97-86b7-776b0167b7f7",
+          "columnIds": [
+            "2d697264-c7a5-4d3f-9d2d-c7b945116e9b"
+          ],
+          "x": 481.234375,
+          "y": 141.6875,
+          "direction": "right"
+        },
+        "end": {
+          "tableId": "c47856d4-466f-459a-a71a-b7e58bfe45de",
+          "columnIds": [
+            "20e55eef-9ef5-4c67-8599-58951ccaa34f"
+          ],
+          "x": 524.25,
+          "y": 439.25,
+          "direction": "left"
+        },
+        "constraintName": "fk_bloco_aula_to_bloco_aula_atributo_sala",
+        "visible": true,
+        "id": "923c5507-30c7-4b0f-a4f1-edc6fc8d537a"
+      },
+      {
+        "identification": false,
+        "relationshipType": "OneN",
+        "startRelationshipType": "Dash",
+        "start": {
+          "tableId": "54666942-572d-4f0b-a207-c127a82ad9b3",
+          "columnIds": [
+            "5db65a9f-8ccf-4052-94b2-2b2eb27f764a"
+          ],
+          "x": 980.75,
+          "y": 404.5,
+          "direction": "left"
+        },
+        "end": {
+          "tableId": "c47856d4-466f-459a-a71a-b7e58bfe45de",
+          "columnIds": [
+            "74d03286-e8ed-4efc-b46f-2aad92cb54a8"
+          ],
+          "x": 905.037109375,
+          "y": 439.25,
+          "direction": "right"
+        },
+        "constraintName": "fk_atributo_sala_to_bloco_aula_atributo_sala",
+        "visible": true,
+        "id": "9aeb1b93-f5f3-4826-b94a-18e4063986bc"
+      }
+    ]
+  }
+}

@@ -1,0 +1,2 @@
+ALTER TABLE usuario
+  ADD nome VARCHAR NULL;

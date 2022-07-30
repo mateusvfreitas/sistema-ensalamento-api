@@ -34,7 +34,7 @@ public class UsuarioService {
         return usuarioResponse;
     }
 
-    public UsuarioDto consultarPorId(Long id){
+    public UsuarioDto consultarUsuarioPorId(Long id){
         Optional<Usuario> usuario = usuarioRepository.findById(id);
 
         if(usuario.isPresent()){

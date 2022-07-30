@@ -47,7 +47,7 @@ public class UsuarioController {
 
     @GetMapping("/{id}")
     public ResponseEntity<UsuarioDto> consultarPorId(@PathVariable("id") Long id) {
-        UsuarioDto usuarioRequest = usuarioService.consultarPorId(id);
+        UsuarioDto usuarioRequest = usuarioService.consultarUsuarioPorId(id);
         if (usuarioRequest != null) {
             return new ResponseEntity<>(usuarioRequest, HttpStatus.OK);
         } else {

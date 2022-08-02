@@ -1,4 +1,4 @@
-package com.tcc.backend.sala;
+package com.tcc.backend.sala.atributosala;
 
 import java.util.List;
 
@@ -11,6 +11,7 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.tcc.backend.blocoaula.BlocoAula;
+import com.tcc.backend.sala.Sala;
 
 import lombok.Data;
 

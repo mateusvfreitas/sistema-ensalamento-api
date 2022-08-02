@@ -17,8 +17,8 @@ import javax.persistence.Table;
 import com.tcc.backend.curso.Curso;
 import com.tcc.backend.enums.EnDiaSemana;
 import com.tcc.backend.horarioaula.HorarioAula;
-import com.tcc.backend.sala.AtributoSala;
 import com.tcc.backend.sala.Sala;
+import com.tcc.backend.sala.atributosala.AtributoSala;
 
 import lombok.Data;
 

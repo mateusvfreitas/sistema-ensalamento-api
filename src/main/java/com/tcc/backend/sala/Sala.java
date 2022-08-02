@@ -11,6 +11,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.tcc.backend.sala.atributosala.AtributoSala;
+
 import lombok.Data;
 
 @Data

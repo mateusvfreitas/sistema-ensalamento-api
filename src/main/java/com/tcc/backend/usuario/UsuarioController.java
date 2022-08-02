@@ -1,7 +1,9 @@
 package com.tcc.backend.usuario;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,59 +23,61 @@ public class UsuarioController {
     @Autowired
     private UsuarioService usuarioService;
 
+    @Autowired
+    private ModelMapper modelMapper;
+
     @GetMapping
-    public ResponseEntity<List<UsuarioDto>> listarTodos() {
-        try {
-            List<UsuarioDto> usuarios = usuarioService.listarTodos();
+    public List<UsuarioDto> listarTodos() {
+        List<Usuario> usuariosEntidade = usuarioService.listarTodos();
 
-            if (usuarios.isEmpty())
-                return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-
-            return new ResponseEntity<>(usuarios, HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
+        return usuariosEntidade.stream().map(usuario -> modelMapper.map(usuario, UsuarioDto.class))
+                .collect(Collectors.toList());
     }
 
     @PostMapping
-    public ResponseEntity<UsuarioDto> criar(@RequestBody UsuarioDto usuarioDto) {
+    public ResponseEntity<Object> criar(@RequestBody UsuarioDto usuarioDto) {
         try {
-            UsuarioDto usuarioRequest = usuarioService.criarUsuario(usuarioDto);
-            return new ResponseEntity<>(usuarioRequest, HttpStatus.CREATED);
+            Usuario usuarioRequest = modelMapper.map(usuarioDto, Usuario.class);
+            Usuario usuario = usuarioService.criarUsuario(usuarioRequest);
+            UsuarioDto usuarioResponse = modelMapper.map(usuario, UsuarioDto.class);
+
+            return new ResponseEntity<>(usuarioResponse, HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>(null, HttpStatus.EXPECTATION_FAILED);
+            return new ResponseEntity<>(e.getMessage(), null, HttpStatus.UNPROCESSABLE_ENTITY);
         }
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<UsuarioDto> consultarPorId(@PathVariable("id") Long id) {
-        UsuarioDto usuarioRequest = usuarioService.consultarUsuarioPorId(id);
-        if (usuarioRequest != null) {
-            return new ResponseEntity<>(usuarioRequest, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    public ResponseEntity<Object> consultarPorId(@PathVariable("id") Long id) {
+        try {
+            Usuario usuario = usuarioService.consultarUsuarioPorId(id);
+            UsuarioDto usuarioResponse = modelMapper.map(usuario, UsuarioDto.class);
+            return new ResponseEntity<>(usuarioResponse, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), null, HttpStatus.NOT_FOUND);
         }
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<UsuarioDto> atualizar(@PathVariable("id") Long id,
+    public ResponseEntity<Object> atualizar(@PathVariable("id") Long id,
             @RequestBody UsuarioDto usuarioDto) {
-        UsuarioDto usuarioRequest = usuarioService.atualizarUsuario(id, usuarioDto);
-        if (usuarioRequest != null) {
-            return new ResponseEntity<>(usuarioRequest, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        try {
+            Usuario usuarioRequest = modelMapper.map(usuarioDto, Usuario.class);
+            Usuario usuario = usuarioService.atualizarUsuario(id, usuarioRequest);
+            UsuarioDto usuarioResponse = modelMapper.map(usuario, UsuarioDto.class);
+            return new ResponseEntity<>(usuarioResponse, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), null, HttpStatus.NOT_FOUND);
         }
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<HttpStatus> deletar(@PathVariable("id") Long id) {
+    public ResponseEntity<Object> deletar(@PathVariable("id") Long id) {
         try {
             usuarioService.deletarUsuario(id);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.EXPECTATION_FAILED);
         }
     }
-    
 }

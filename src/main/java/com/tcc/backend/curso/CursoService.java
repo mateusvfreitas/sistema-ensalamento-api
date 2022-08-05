@@ -20,22 +20,23 @@ public class CursoService {
 
     public Curso criarCurso(Curso curso) {
         List<Curso> listaCursos = cursoRepository.findByNomeIgnoreCase(curso.getNome());
-        
-        if(!listaCursos.isEmpty()){
+
+        if (!listaCursos.isEmpty()) {
             throw new ResourceAlreadyExists("Curso", "nome", curso.getNome());
         }
-        
+
         return cursoRepository.save(curso);
     }
 
-    public Curso consultarCursoPorId(Long id)  {
+    public Curso consultarCursoPorId(Long id) {
         return cursoRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Curso", id));
     }
 
     public Curso atualizarCurso(Long id, Curso cursoReq) {
         Curso curso = cursoRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Curso", id));
-        
-        if(!cursoRepository.findByNomeIgnoreCase(cursoReq.getNome()).isEmpty()){
+
+        if ((!curso.getNome().equals(cursoReq.getNome()))
+                && (!cursoRepository.findByNomeIgnoreCase(cursoReq.getNome()).isEmpty())) {
             throw new ResourceAlreadyExists("Curso", "nome", cursoReq.getNome());
         }
         curso.setNome(cursoReq.getNome());
@@ -43,10 +44,10 @@ public class CursoService {
     }
 
     public void deletarCurso(Long id) {
-        if(cursoRepository.findById(id).isEmpty()){
+        if (cursoRepository.findById(id).isEmpty()) {
             throw new ResourceNotFoundException("Curso", id);
         }
         cursoRepository.deleteById(id);
     }
-    
+
 }

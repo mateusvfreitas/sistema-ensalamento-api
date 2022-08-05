@@ -32,14 +32,15 @@ public class HorarioAulaService {
         return horarioAulaRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Horario", id));
     }
 
-    public HorarioAula atualizarHorarioAula(Long id, HorarioAula horario) {
+    public HorarioAula atualizarHorarioAula(Long id, HorarioAula horarioAulaReq) {
         HorarioAula horarioAula = horarioAulaRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Horario", id));
 
-        if (!horarioAulaRepository.findByNomeIgnoreCase(horario.getNome()).isEmpty()) {
-            throw new ResourceAlreadyExists("Horario", "nome", horario.getNome());
+        if ((!horarioAula.getNome().equals(horarioAulaReq.getNome()))
+                && (!horarioAulaRepository.findByNomeIgnoreCase(horarioAulaReq.getNome()).isEmpty())) {
+            throw new ResourceAlreadyExists("Horario", "nome", horarioAulaReq.getNome());
         }
-        horarioAula.setNome(horario.getNome());
+        horarioAula.setNome(horarioAulaReq.getNome());
         return horarioAulaRepository.save(horarioAula);
     }
 

@@ -48,7 +48,7 @@ public class SalaService {
     }
 
     public void deletarSala(Long id) {
-        Sala sala = salaRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Sala", id));
+        salaRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Sala", id));
 
         // sala.getBlocoAula().forEach(blocoAula.getSala().remove(sala));
 

@@ -2,9 +2,7 @@ package com.tcc.backend.blocoaula;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -31,7 +29,7 @@ public class BlocoAula {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name="id_curso")
     private Curso curso;
 
@@ -41,11 +39,11 @@ public class BlocoAula {
 
     private EnDiaSemana diaSemana;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name="id_horario_inicio")
     private HorarioAula horarioInicio;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name="id_horario_fim")
     private HorarioAula horarioFim;
 
@@ -56,11 +54,11 @@ public class BlocoAula {
         inverseJoinColumns = @JoinColumn(name = "id_atributo_sala"))
     private List<AtributoSala> atributosSala;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name="id_sala_especifica")
     private Sala salaEspecifica;
 
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name="id_sala_atual")
     private Sala salaAtual;
 }

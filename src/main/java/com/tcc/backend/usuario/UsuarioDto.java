@@ -7,6 +7,8 @@ public class UsuarioDto {
     private Long id;
 
     private String nome;
-    
+
     private Boolean isAdmin;
+
+    private String email;
 }

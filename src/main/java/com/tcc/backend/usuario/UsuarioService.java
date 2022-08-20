@@ -42,6 +42,7 @@ public class UsuarioService {
         }
         usuario.setIsAdmin(usuarioReq.getIsAdmin());
         usuario.setNome(usuarioReq.getNome());
+        usuario.setEmail(usuarioReq.getEmail());
         return usuarioRepository.save(usuario);
     }
 

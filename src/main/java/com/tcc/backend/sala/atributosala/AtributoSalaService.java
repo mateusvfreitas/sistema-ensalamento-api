@@ -1,5 +1,6 @@
 package com.tcc.backend.sala.atributosala;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,13 +20,24 @@ public class AtributoSalaService {
     }
 
     public AtributoSala criarAtributoSala(AtributoSala atributoSala) {
-        List<AtributoSala> listaAtributoSalas = atributoSalaRepository.findByNomeIgnoreCase(atributoSala.getNome());
+        List<AtributoSala> listaAtributoSalasExistentes = atributoSalaRepository.findByNomeIgnoreCase(atributoSala.getNome());
 
-        if (!listaAtributoSalas.isEmpty()) {
+        if (!listaAtributoSalasExistentes.isEmpty()) {
             throw new ResourceAlreadyExists("Atributo", "nome", atributoSala.getNome());
         }
 
         return atributoSalaRepository.save(atributoSala);
+    }
+
+    public List<AtributoSala> criarListaAtributoSala(List<AtributoSala> listaAtributoSala) {
+        List<AtributoSala> atributosCriados = new ArrayList<>();
+
+        listaAtributoSala.forEach(atributo -> {
+            AtributoSala atributoSala = criarAtributoSala(atributo);
+            atributosCriados.add(atributoSala);
+        });
+
+        return atributosCriados;
     }
 
     public AtributoSala consultarAtributoSalaPorId(Long id) {

@@ -46,6 +46,19 @@ public class AtributoSalaController {
         }
     }
 
+    @PostMapping("/lista")
+    public ResponseEntity<Object> criarLista(@RequestBody List<AtributoSalaDto> listaAtributoSalaDto) {
+        try {
+            List<AtributoSala> listaAtributoSalaRequest = listaAtributoSalaDto.stream().map(atributoSala -> modelMapper.map(atributoSala, AtributoSala.class)).collect(Collectors.toList());
+            List<AtributoSala> atributosCriados = atributoSalaService.criarListaAtributoSala(listaAtributoSalaRequest);
+            List<AtributoSalaDto> listaAtributoSalaResponse = atributosCriados.stream().map(atributoNovo -> modelMapper.map(atributoNovo, AtributoSalaDto.class)).collect(Collectors.toList());
+        
+            return new ResponseEntity<>(listaAtributoSalaResponse, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e.getMessage(), null, HttpStatus.UNPROCESSABLE_ENTITY);
+        }
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<Object> consultarPorId(@PathVariable("id") Long id) {
         try {

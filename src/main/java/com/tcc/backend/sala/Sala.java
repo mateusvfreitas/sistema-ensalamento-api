@@ -9,9 +9,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.tcc.backend.sala.atributosala.AtributoSala;
+import com.tcc.backend.sala.gruposala.GrupoSala;
 
 import lombok.Data;
 
@@ -27,15 +29,16 @@ public class Sala {
     private String nome;
 
     private Integer capacidade;
-    
+
     @ManyToMany
-    @JoinTable(
-        name = "sala_atributo_sala", 
-        joinColumns = @JoinColumn(name = "id_sala"), 
-        inverseJoinColumns = @JoinColumn(name = "id_atributo_sala"))
+    @JoinTable(name = "sala_atributo_sala", joinColumns = @JoinColumn(name = "id_sala"), inverseJoinColumns = @JoinColumn(name = "id_atributo_sala"))
     private List<AtributoSala> atributos;
 
     private Boolean isExclusiva;
-    
+
     private Boolean isLiberar;
+
+    @ManyToOne
+    @JoinColumn(name = "id_grupo_sala")
+    private GrupoSala grupoSala;
 }

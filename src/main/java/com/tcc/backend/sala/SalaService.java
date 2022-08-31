@@ -44,6 +44,7 @@ public class SalaService {
         sala.setAtributos(salaReq.getAtributos());
         sala.setIsExclusiva(salaReq.getIsExclusiva());
         sala.setIsLiberar(salaReq.getIsLiberar());
+        sala.setGrupoSala(salaReq.getGrupoSala());
         return salaRepository.save(sala);
     }
 

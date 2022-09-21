@@ -41,6 +41,9 @@ public class HorarioAulaService {
             throw new ResourceAlreadyExists("Horario", "nome", horarioAulaReq.getNome());
         }
         horarioAula.setNome(horarioAulaReq.getNome());
+        horarioAula.setHorarioInicio(horarioAulaReq.getHorarioInicio());
+        horarioAula.setHorarioFim(horarioAulaReq.getHorarioFim());
+
         return horarioAulaRepository.save(horarioAula);
     }
 

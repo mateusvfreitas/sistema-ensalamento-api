@@ -45,7 +45,7 @@ public class UsuarioController {
 
             return new ResponseEntity<>(usuarioResponse, HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>(e.getMessage(), null, HttpStatus.UNPROCESSABLE_ENTITY);
+            return new ResponseEntity<>(e, null, HttpStatus.UNPROCESSABLE_ENTITY);
         }
     }
 
@@ -69,7 +69,7 @@ public class UsuarioController {
             UsuarioDto usuarioResponse = modelMapper.map(usuario, UsuarioDto.class);
             return new ResponseEntity<>(usuarioResponse, HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>(e.getMessage(), null, HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>(e, null, HttpStatus.NOT_FOUND);
         }
     }
 
@@ -79,7 +79,7 @@ public class UsuarioController {
             usuarioService.deletarUsuario(id);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.EXPECTATION_FAILED);
+            return new ResponseEntity<>(e, HttpStatus.EXPECTATION_FAILED);
         }
     }
 }

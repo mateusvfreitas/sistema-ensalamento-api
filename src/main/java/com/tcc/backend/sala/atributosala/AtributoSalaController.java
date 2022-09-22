@@ -7,6 +7,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,10 +17,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/atributos")
 public class AtributoSalaController {
-    
+
     @Autowired
     private AtributoSalaService atributoSalaService;
 
@@ -29,8 +31,9 @@ public class AtributoSalaController {
     @GetMapping
     public List<AtributoSalaDto> listarTodos() {
         List<AtributoSala> atributoSalasEntidade = atributoSalaService.listarAtributos();
-        
-        return atributoSalasEntidade.stream().map(atributoSala -> modelMapper.map(atributoSala, AtributoSalaDto.class)).collect(Collectors.toList());
+
+        return atributoSalasEntidade.stream().map(atributoSala -> modelMapper.map(atributoSala, AtributoSalaDto.class))
+                .collect(Collectors.toList());
     }
 
     @PostMapping
@@ -39,7 +42,7 @@ public class AtributoSalaController {
             AtributoSala atributoSalaRequest = modelMapper.map(atributoSalaDto, AtributoSala.class);
             AtributoSala atributoSala = atributoSalaService.criarAtributoSala(atributoSalaRequest);
             AtributoSalaDto atributoSalaResponse = modelMapper.map(atributoSala, AtributoSalaDto.class);
-            
+
             return new ResponseEntity<>(atributoSalaResponse, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), null, HttpStatus.UNPROCESSABLE_ENTITY);
@@ -49,10 +52,14 @@ public class AtributoSalaController {
     @PostMapping("/lista")
     public ResponseEntity<Object> criarLista(@RequestBody List<AtributoSalaDto> listaAtributoSalaDto) {
         try {
-            List<AtributoSala> listaAtributoSalaRequest = listaAtributoSalaDto.stream().map(atributoSala -> modelMapper.map(atributoSala, AtributoSala.class)).collect(Collectors.toList());
+            List<AtributoSala> listaAtributoSalaRequest = listaAtributoSalaDto.stream()
+                    .map(atributoSala -> modelMapper.map(atributoSala, AtributoSala.class))
+                    .collect(Collectors.toList());
             List<AtributoSala> atributosCriados = atributoSalaService.criarListaAtributoSala(listaAtributoSalaRequest);
-            List<AtributoSalaDto> listaAtributoSalaResponse = atributosCriados.stream().map(atributoNovo -> modelMapper.map(atributoNovo, AtributoSalaDto.class)).collect(Collectors.toList());
-        
+            List<AtributoSalaDto> listaAtributoSalaResponse = atributosCriados.stream()
+                    .map(atributoNovo -> modelMapper.map(atributoNovo, AtributoSalaDto.class))
+                    .collect(Collectors.toList());
+
             return new ResponseEntity<>(listaAtributoSalaResponse, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), null, HttpStatus.UNPROCESSABLE_ENTITY);

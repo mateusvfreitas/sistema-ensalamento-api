@@ -1,5 +1,6 @@
 package com.tcc.backend.sala.gruposala;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,17 @@ public class GrupoSalaService {
     }
 
     public void deletarGrupo(Long id) {
+    }
+
+    public List<GrupoSala> buscarGruposPorId(List<Long> listaIds) {
+        List<GrupoSala> grupoSalas = new ArrayList<>();
+        listaIds.forEach(el -> {
+            GrupoSala grupoSala = grupoRepository.findById(el)
+                    .orElseThrow(() -> new ResourceNotFoundException("AtributoSala", el));
+            grupoSalas.add(grupoSala);
+        });
+
+        return grupoSalas;
     }
 
 }

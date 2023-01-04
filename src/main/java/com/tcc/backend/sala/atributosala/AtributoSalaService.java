@@ -20,7 +20,8 @@ public class AtributoSalaService {
     }
 
     public AtributoSala criarAtributoSala(AtributoSala atributoSala) {
-        List<AtributoSala> listaAtributoSalasExistentes = atributoSalaRepository.findByNomeIgnoreCase(atributoSala.getNome());
+        List<AtributoSala> listaAtributoSalasExistentes = atributoSalaRepository
+                .findByNomeIgnoreCase(atributoSala.getNome());
 
         if (!listaAtributoSalasExistentes.isEmpty()) {
             throw new ResourceAlreadyExists("Atributo", "nome", atributoSala.getNome());
@@ -63,5 +64,16 @@ public class AtributoSalaService {
         atributo.getSalas().forEach(sala -> sala.getAtributos().remove(atributo));
 
         atributoSalaRepository.deleteById(id);
+    }
+
+    public List<AtributoSala> buscarAtributosPorId(List<Long> listaIds) {
+        List<AtributoSala> listaAtributos = new ArrayList<>();
+        listaIds.forEach(el -> {
+            AtributoSala atributoSala = atributoSalaRepository.findById(el)
+                    .orElseThrow(() -> new ResourceNotFoundException("AtributoSala", el));
+            listaAtributos.add(atributoSala);
+        });
+
+        return listaAtributos;
     }
 }

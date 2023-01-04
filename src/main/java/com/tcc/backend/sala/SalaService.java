@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.tcc.backend.exceptions.ResourceAlreadyExists;
 import com.tcc.backend.exceptions.ResourceNotFoundException;
+import com.tcc.backend.sala.atributosala.AtributoSala;
+import com.tcc.backend.sala.gruposala.GrupoSala;
 
 @Service
 public class SalaService {
@@ -16,6 +18,17 @@ public class SalaService {
 
     public List<Sala> listarSalas() {
         return salaRepository.findAll();
+        // return salaRepository.findByFiltros(filtroAtributos);
+    }
+
+    public List<Sala> listarSalasFiltros(List<AtributoSala> filtroAtributos, Integer filtroCapacidade,
+            List<GrupoSala> filtroGrupos, Boolean isMatchAll) {
+        // return salaRepository.findAll();
+        if (Boolean.TRUE.equals(isMatchAll) && filtroAtributos != null) {
+            Long qtdeAtributos = Long.valueOf(filtroAtributos.size());
+            return salaRepository.findByFiltrosMatchAll(filtroAtributos, filtroCapacidade, filtroGrupos, qtdeAtributos);
+        }
+        return salaRepository.findByFiltrosGeneric(filtroAtributos, filtroCapacidade, filtroGrupos);
     }
 
     public Sala criarSala(Sala sala) {

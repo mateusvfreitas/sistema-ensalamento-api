@@ -30,7 +30,7 @@ public class BlocoAula {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name="id_curso")
+    @JoinColumn(name = "id_curso")
     private Curso curso;
 
     private String disciplina;
@@ -40,25 +40,22 @@ public class BlocoAula {
     private EnDiaSemana diaSemana;
 
     @ManyToOne
-    @JoinColumn(name="id_horario_inicio")
+    @JoinColumn(name = "id_horario_inicio")
     private HorarioAula horarioInicio;
 
     @ManyToOne
-    @JoinColumn(name="id_horario_fim")
+    @JoinColumn(name = "id_horario_fim")
     private HorarioAula horarioFim;
 
     @ManyToMany
-    @JoinTable(
-        name = "bloco_aula_atributo_sala", 
-        joinColumns = @JoinColumn(name = "id_bloco_aula"), 
-        inverseJoinColumns = @JoinColumn(name = "id_atributo_sala"))
+    @JoinTable(name = "bloco_aula_atributo_sala", joinColumns = @JoinColumn(name = "id_bloco_aula"), inverseJoinColumns = @JoinColumn(name = "id_atributo_sala"))
     private List<AtributoSala> atributosSala;
 
     @ManyToOne
-    @JoinColumn(name="id_sala_especifica")
+    @JoinColumn(name = "id_sala_especifica")
     private Sala salaEspecifica;
 
     @ManyToOne
-    @JoinColumn(name="id_sala_atual")
+    @JoinColumn(name = "id_sala_atual")
     private Sala salaAtual;
 }

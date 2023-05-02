@@ -7,6 +7,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,10 +17,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/blocos-aula")
 public class BlocoAulaController {
-    
+
     @Autowired
     private BlocoAulaService blocoAulaService;
 
@@ -30,7 +32,8 @@ public class BlocoAulaController {
     public List<BlocoAulaDto> listarTodos() {
         List<BlocoAula> blocoAulaEntidade = blocoAulaService.listarTodos();
 
-        return blocoAulaEntidade.stream().map(blocoAula -> modelMapper.map(blocoAula, BlocoAulaDto.class)).collect(Collectors.toList());
+        return blocoAulaEntidade.stream().map(blocoAula -> modelMapper.map(blocoAula, BlocoAulaDto.class))
+                .collect(Collectors.toList());
     }
 
     @PostMapping
@@ -39,7 +42,7 @@ public class BlocoAulaController {
             BlocoAula blocoAulaRequest = modelMapper.map(blocoAulaDto, BlocoAula.class);
             BlocoAula blocoAula = blocoAulaService.criarBlocoAula(blocoAulaRequest);
             BlocoAulaDto blocoAulaResponse = modelMapper.map(blocoAula, BlocoAulaDto.class);
-        
+
             return new ResponseEntity<>(blocoAulaResponse, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), null, HttpStatus.UNPROCESSABLE_ENTITY);

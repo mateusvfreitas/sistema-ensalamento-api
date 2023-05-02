@@ -1,10 +1,16 @@
 package com.tcc.backend.usuario;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.tcc.backend.curso.Curso;
 
 import lombok.Data;
 
@@ -22,4 +28,8 @@ public class Usuario {
     private Boolean isAdmin;
 
     private String email;
+
+    @JsonIgnore
+    @ManyToMany(mappedBy = "usuarios")
+    private List<Curso> cursos;
 }

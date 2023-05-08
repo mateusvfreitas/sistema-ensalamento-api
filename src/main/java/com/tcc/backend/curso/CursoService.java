@@ -40,6 +40,7 @@ public class CursoService {
             throw new ResourceAlreadyExists("Curso", "nome", cursoReq.getNome());
         }
         curso.setNome(cursoReq.getNome());
+        curso.setUsuarios(cursoReq.getUsuarios());
         return cursoRepository.save(curso);
     }
 

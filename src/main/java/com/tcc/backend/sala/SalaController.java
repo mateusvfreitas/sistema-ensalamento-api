@@ -73,7 +73,7 @@ public class SalaController {
 
             return new ResponseEntity<>(salaResponse, HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>(e.getMessage(), null, HttpStatus.UNPROCESSABLE_ENTITY);
+            return new ResponseEntity<>(e, null, HttpStatus.UNPROCESSABLE_ENTITY);
         }
     }
 

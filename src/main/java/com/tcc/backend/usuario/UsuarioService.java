@@ -19,10 +19,16 @@ public class UsuarioService {
     }
 
     public Usuario criarUsuario(Usuario usuario) {
-        List<Usuario> listaUsuarios = usuarioRepository.findByNomeIgnoreCase(usuario.getNome());
+        List<Usuario> listaUsuariosNome = usuarioRepository.findByNomeIgnoreCase(usuario.getNome());
+        List<Usuario> listaUsuariosEmail = usuarioRepository.findByEmailIgnoreCase(usuario.getNome());
+        List<Usuario> listaUsuariosUsername = usuarioRepository.findByUsernameIgnoreCase(usuario.getNome());
 
-        if (!listaUsuarios.isEmpty()) {
+        if (!listaUsuariosNome.isEmpty()) {
             throw new ResourceAlreadyExists("Usuario", "nome", usuario.getNome());
+        } else if (!listaUsuariosEmail.isEmpty()) {
+            throw new ResourceAlreadyExists("Usuario", "email", usuario.getEmail());
+        } else if (!listaUsuariosUsername.isEmpty()) {
+            throw new ResourceAlreadyExists("Usuario", "username", usuario.getUsername());
         }
 
         return usuarioRepository.save(usuario);
@@ -43,6 +49,7 @@ public class UsuarioService {
         usuario.setIsAdmin(usuarioReq.getIsAdmin());
         usuario.setNome(usuarioReq.getNome());
         usuario.setEmail(usuarioReq.getEmail());
+        usuario.setUsername(usuarioReq.getUsername());
         return usuarioRepository.save(usuario);
     }
 

@@ -29,6 +29,8 @@ public class Usuario {
 
     private String email;
 
+    private String username;
+
     @JsonIgnore
     @ManyToMany(mappedBy = "usuarios")
     private List<Curso> cursos;

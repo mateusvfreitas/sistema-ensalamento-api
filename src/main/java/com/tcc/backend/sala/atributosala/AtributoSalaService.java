@@ -42,12 +42,12 @@ public class AtributoSalaService {
     }
 
     public AtributoSala consultarAtributoSalaPorId(Long id) {
-        return atributoSalaRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Atributo", id));
+        return atributoSalaRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Atributo"));
     }
 
     public AtributoSala atualizarAtributoSala(Long id, AtributoSala atributoSalaReq) {
         AtributoSala atributoSala = atributoSalaRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("AtributoSala", id));
+                .orElseThrow(() -> new ResourceNotFoundException("Atributo"));
 
         if ((!atributoSala.getNome().equals(atributoSalaReq.getNome()))
                 && (!atributoSalaRepository.findByNomeIgnoreCase(atributoSalaReq.getNome()).isEmpty())) {
@@ -59,7 +59,7 @@ public class AtributoSalaService {
 
     public void deletarAtributoSala(Long id) {
         AtributoSala atributo = atributoSalaRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Atributo", id));
+                .orElseThrow(() -> new ResourceNotFoundException("Atributo"));
 
         atributo.getSalas().forEach(sala -> sala.getAtributos().remove(atributo));
 
@@ -70,7 +70,7 @@ public class AtributoSalaService {
         List<AtributoSala> listaAtributos = new ArrayList<>();
         listaIds.forEach(el -> {
             AtributoSala atributoSala = atributoSalaRepository.findById(el)
-                    .orElseThrow(() -> new ResourceNotFoundException("AtributoSala", el));
+                    .orElseThrow(() -> new ResourceNotFoundException("Atributo"));
             listaAtributos.add(atributoSala);
         });
 

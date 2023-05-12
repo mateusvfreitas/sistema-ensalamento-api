@@ -35,12 +35,12 @@ public class UsuarioService {
     }
 
     public Usuario consultarUsuarioPorId(Long id) {
-        return usuarioRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Usuario", id));
+        return usuarioRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Usuario"));
     }
 
     public Usuario atualizarUsuario(Long id, Usuario usuarioReq) {
         Usuario usuario = usuarioRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Usuario", id));
+                .orElseThrow(() -> new ResourceNotFoundException("Usuario"));
 
         if ((!usuario.getNome().equals(usuarioReq.getNome()))
                 && (!usuarioRepository.findByNomeIgnoreCase(usuarioReq.getNome()).isEmpty())) {
@@ -55,9 +55,19 @@ public class UsuarioService {
 
     public void deletarUsuario(Long id) {
         if (usuarioRepository.findById(id).isEmpty()) {
-            throw new ResourceNotFoundException("Usuario", id);
+            throw new ResourceNotFoundException("Usuario");
         }
         usuarioRepository.deleteById(id);
+    }
+
+    public Usuario consultarPorUsername(String username) {
+        List<Usuario> listaUsuariosUsername = usuarioRepository.findByUsernameIgnoreCase(username);
+
+        if (listaUsuariosUsername.isEmpty()) {
+            throw new ResourceNotFoundException("Usuario");
+        }
+
+        return listaUsuariosUsername.get(0);
     }
 
 }

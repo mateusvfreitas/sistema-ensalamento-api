@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin(origins = "http://localhost:4200")
@@ -29,8 +30,13 @@ public class BlocoAulaController {
     private ModelMapper modelMapper;
 
     @GetMapping
-    public List<BlocoAulaDto> listarTodos() {
-        List<BlocoAula> blocoAulaEntidade = blocoAulaService.listarTodos();
+    public List<BlocoAulaDto> listarTodos(@RequestParam(value = "responsavel", required = false) String responsavel) {
+        List<BlocoAula> blocoAulaEntidade;
+        if (responsavel != null) {
+            blocoAulaEntidade = blocoAulaService.findByUsuarioResponsavel(responsavel);
+        } else {
+            blocoAulaEntidade = blocoAulaService.listarTodos();
+        }
 
         return blocoAulaEntidade.stream().map(blocoAula -> modelMapper.map(blocoAula, BlocoAulaDto.class))
                 .collect(Collectors.toList());

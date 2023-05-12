@@ -42,12 +42,12 @@ public class SalaService {
     }
 
     public Sala consultarSalaPorId(Long id) {
-        return salaRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Sala", id));
+        return salaRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Sala"));
     }
 
     public Sala atualizarSala(Long id, Sala salaReq) {
         Sala sala = salaRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Sala", id));
+                .orElseThrow(() -> new ResourceNotFoundException("Sala"));
         if ((!sala.getNome().equals(salaReq.getNome()))
                 && (!salaRepository.findByNomeIgnoreCase(salaReq.getNome()).isEmpty())) {
             throw new ResourceAlreadyExists("Sala", "nome", salaReq.getNome());
@@ -62,7 +62,7 @@ public class SalaService {
     }
 
     public void deletarSala(Long id) {
-        salaRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Sala", id));
+        salaRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Sala"));
 
         // sala.getBlocoAula().forEach(blocoAula.getSala().remove(sala));
 

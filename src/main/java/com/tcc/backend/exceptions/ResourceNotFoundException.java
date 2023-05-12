@@ -3,8 +3,8 @@ package com.tcc.backend.exceptions;
 public class ResourceNotFoundException extends RuntimeException {
     private static final long serialVersionUID = 1L;
 
-    public ResourceNotFoundException(String classe, Long id) {
+    public ResourceNotFoundException(String classe) {
 
-        super("Objeto " + classe + " com id = " + id.toString() + " não encontrado");
+        super(classe + " não encontrado");
     }
 }

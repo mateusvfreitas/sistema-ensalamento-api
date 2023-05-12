@@ -29,7 +29,7 @@ public class GrupoSalaService {
     }
 
     public GrupoSala consultarGrupoPorId(Long id) {
-        return grupoRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("GrupoSala", id));
+        return grupoRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Agrupamento"));
     }
 
     public GrupoSala atualizarGrupo(Long id, GrupoSala grupoRequest) {
@@ -43,7 +43,7 @@ public class GrupoSalaService {
         List<GrupoSala> grupoSalas = new ArrayList<>();
         listaIds.forEach(el -> {
             GrupoSala grupoSala = grupoRepository.findById(el)
-                    .orElseThrow(() -> new ResourceNotFoundException("AtributoSala", el));
+                    .orElseThrow(() -> new ResourceNotFoundException("Agrupamento"));
             grupoSalas.add(grupoSala);
         });
 

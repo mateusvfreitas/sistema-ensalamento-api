@@ -29,11 +29,11 @@ public class CursoService {
     }
 
     public Curso consultarCursoPorId(Long id) {
-        return cursoRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Curso", id));
+        return cursoRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Curso"));
     }
 
     public Curso atualizarCurso(Long id, Curso cursoReq) {
-        Curso curso = cursoRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Curso", id));
+        Curso curso = cursoRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Curso"));
 
         if ((!curso.getNome().equals(cursoReq.getNome()))
                 && (!cursoRepository.findByNomeIgnoreCase(cursoReq.getNome()).isEmpty())) {
@@ -46,7 +46,7 @@ public class CursoService {
 
     public void deletarCurso(Long id) {
         if (cursoRepository.findById(id).isEmpty()) {
-            throw new ResourceNotFoundException("Curso", id);
+            throw new ResourceNotFoundException("Curso");
         }
         cursoRepository.deleteById(id);
     }

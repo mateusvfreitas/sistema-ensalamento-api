@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin(origins = "http://localhost:4200")
@@ -80,6 +81,18 @@ public class UsuarioController {
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(e, HttpStatus.EXPECTATION_FAILED);
+        }
+    }
+
+    @GetMapping("/username")
+    public ResponseEntity<Object> consultarPorUsername(
+            @RequestParam(value = "filtro", required = true) String username) {
+        try {
+            Usuario usuario = usuarioService.consultarPorUsername(username);
+            UsuarioDto usuarioResponse = modelMapper.map(usuario, UsuarioDto.class);
+            return new ResponseEntity<>(usuarioResponse, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(e, null, HttpStatus.NOT_FOUND);
         }
     }
 }

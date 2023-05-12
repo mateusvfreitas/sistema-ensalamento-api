@@ -9,7 +9,7 @@ import com.tcc.backend.exceptions.ResourceNotFoundException;
 
 @Service
 public class BlocoAulaService {
-    
+
     @Autowired
     private BlocoAulaRepository blocoAulaRepository;
 
@@ -22,11 +22,11 @@ public class BlocoAulaService {
     }
 
     public BlocoAula consultarBlocoAulaPorId(Long id) {
-        return blocoAulaRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("BlocoAula", id));
+        return blocoAulaRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Aula"));
     }
 
     public BlocoAula atualizarBlocoAula(Long id, BlocoAula blocoAulaReq) {
-        BlocoAula blocoAula = blocoAulaRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("BlocoAula", id));
+        BlocoAula blocoAula = blocoAulaRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Aula"));
 
         blocoAula.setCurso(blocoAulaReq.getCurso());
         blocoAula.setDisciplina(blocoAulaReq.getDisciplina());
@@ -42,8 +42,12 @@ public class BlocoAulaService {
 
     public void deletarBlocoAula(Long id) {
         if (blocoAulaRepository.findById(id).isEmpty()) {
-            throw new ResourceNotFoundException("BlocoAula", id);
+            throw new ResourceNotFoundException("Aula");
         }
         blocoAulaRepository.deleteById(id);
+    }
+
+    public List<BlocoAula> findByUsuarioResponsavel(String responsavel) {
+        return blocoAulaRepository.findByUsuarioResponsavel(responsavel);
     }
 }

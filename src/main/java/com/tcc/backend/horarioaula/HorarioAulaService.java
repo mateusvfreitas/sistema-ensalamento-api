@@ -29,12 +29,12 @@ public class HorarioAulaService {
     }
 
     public HorarioAula consultarHorarioPorId(Long id) {
-        return horarioAulaRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Horario", id));
+        return horarioAulaRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Horario"));
     }
 
     public HorarioAula atualizarHorarioAula(Long id, HorarioAula horarioAulaReq) {
         HorarioAula horarioAula = horarioAulaRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("Horario", id));
+                .orElseThrow(() -> new ResourceNotFoundException("Horario"));
 
         if ((!horarioAula.getNome().equals(horarioAulaReq.getNome()))
                 && (!horarioAulaRepository.findByNomeIgnoreCase(horarioAulaReq.getNome()).isEmpty())) {
@@ -49,7 +49,7 @@ public class HorarioAulaService {
 
     public void deletarHorarioAula(Long id) {
         if (horarioAulaRepository.findById(id).isEmpty()) {
-            throw new ResourceNotFoundException("Horario", id);
+            throw new ResourceNotFoundException("Horario");
         }
         horarioAulaRepository.deleteById(id);
     }

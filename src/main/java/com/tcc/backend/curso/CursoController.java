@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @CrossOrigin(origins = "http://localhost:4200")
@@ -29,8 +30,14 @@ public class CursoController {
     private ModelMapper modelMapper;
 
     @GetMapping
-    public List<CursoDto> listarTodos() {
-        List<Curso> cursosEntidade = cursoService.listarTodos();
+    public List<CursoDto> listarTodos(
+            @RequestParam(value = "responsavel", required = false) String usuarioResponsavel) {
+        List<Curso> cursosEntidade;
+        if (usuarioResponsavel != null) {
+            cursosEntidade = cursoService.findByUsuarioResponsavel(usuarioResponsavel);
+        } else {
+            cursosEntidade = cursoService.listarTodos();
+        }
 
         return cursosEntidade.stream().map(curso -> modelMapper.map(curso, CursoDto.class))
                 .collect(Collectors.toList());

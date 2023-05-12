@@ -1,2 +1,2 @@
-ALTER TABLE username
-  ADD nome VARCHAR NULL;
+ALTER TABLE usuario
+  ADD username VARCHAR NULL;

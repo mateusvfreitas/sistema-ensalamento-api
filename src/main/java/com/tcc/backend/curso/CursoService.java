@@ -51,4 +51,8 @@ public class CursoService {
         cursoRepository.deleteById(id);
     }
 
+    public List<Curso> findByUsuarioResponsavel(String responsavel) {
+        return cursoRepository.findByUsuarioResponsavel(responsavel);
+    }
+
 }

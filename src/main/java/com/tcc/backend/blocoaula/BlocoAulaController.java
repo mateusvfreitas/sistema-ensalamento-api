@@ -88,4 +88,9 @@ public class BlocoAulaController {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.EXPECTATION_FAILED);
         }
     }
+
+    @GetMapping("/heatmap")
+    public List<HeatMapDto> gerarHeatMap() {
+        return blocoAulaService.gerarHeatMap();
+    }
 }

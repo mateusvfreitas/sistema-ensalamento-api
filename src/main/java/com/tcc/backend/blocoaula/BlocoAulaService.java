@@ -1,17 +1,24 @@
 package com.tcc.backend.blocoaula;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.tcc.backend.enums.EnDiaSemana;
 import com.tcc.backend.exceptions.ResourceNotFoundException;
+import com.tcc.backend.horarioaula.HorarioAula;
+import com.tcc.backend.horarioaula.HorarioAulaRepository;
 
 @Service
 public class BlocoAulaService {
 
     @Autowired
     private BlocoAulaRepository blocoAulaRepository;
+
+    @Autowired
+    private HorarioAulaRepository horarioAulaRepository;
 
     public List<BlocoAula> listarTodos() {
         return blocoAulaRepository.findAll();
@@ -49,5 +56,33 @@ public class BlocoAulaService {
 
     public List<BlocoAula> findByUsuarioResponsavel(String responsavel) {
         return blocoAulaRepository.findByUsuarioResponsavel(responsavel);
+    }
+
+    public List<HeatMapDto> gerarHeatMap() {
+        List<HorarioAula> horarios = horarioAulaRepository.findAllByOrderByHorarioInicio();
+        List<BlocoAula> aulas = blocoAulaRepository.findAll();
+
+        List<HeatMapDto> heatMap = new ArrayList<>();
+
+        horarios.forEach(horario -> {
+            HeatMapDto heatMapHorario = new HeatMapDto();
+            List<HeatMapDetalhe> listaDetalhes = new ArrayList<>();
+            heatMapHorario.setNomeHorario(horario.getNome());
+            for (EnDiaSemana dia : EnDiaSemana.values()) {
+                HeatMapDetalhe detalhe = new HeatMapDetalhe();
+                detalhe.setDiaSemana(dia.getDescricao());
+                aulas.forEach(aula -> {
+                    if (aula.getDiaSemana() == dia
+                            && horario.getHorarioFim().compareTo(aula.getHorarioInicio().getHorarioInicio()) > 0
+                            && horario.getHorarioInicio().compareTo(aula.getHorarioFim().getHorarioFim()) < 0) {
+                        detalhe.contagem += 1;
+                    }
+                });
+                listaDetalhes.add(detalhe);
+            }
+            heatMapHorario.setListaDetalhes(listaDetalhes);
+            heatMap.add(heatMapHorario);
+        });
+        return heatMap;
     }
 }

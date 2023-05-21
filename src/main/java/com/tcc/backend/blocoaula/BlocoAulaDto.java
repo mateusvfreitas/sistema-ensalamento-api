@@ -31,8 +31,4 @@ public class BlocoAulaDto {
 
     private SalaDto SalaAtual;
 
-    public String getDiaSemana() {
-        return diaSemana;
-    }
-
 }

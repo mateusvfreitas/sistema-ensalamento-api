@@ -10,4 +10,6 @@ public class HeatMapDto {
     private String nomeHorario;
 
     private List<HeatMapDetalhe> listaDetalhes;
+
+    private float media;
 }

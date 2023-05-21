@@ -18,6 +18,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.tcc.backend.sala.atributosala.AtributoSala;
+import com.tcc.backend.sala.atributosala.AtributoSalaService;
+
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/blocos-aula")
@@ -25,6 +28,9 @@ public class BlocoAulaController {
 
     @Autowired
     private BlocoAulaService blocoAulaService;
+
+    @Autowired
+    private AtributoSalaService atributoSalaService;
 
     @Autowired
     private ModelMapper modelMapper;
@@ -90,7 +96,12 @@ public class BlocoAulaController {
     }
 
     @GetMapping("/heatmap")
-    public List<HeatMapDto> gerarHeatMap() {
-        return blocoAulaService.gerarHeatMap();
+    public List<HeatMapDto> gerarHeatMap(@RequestParam(value = "atributo", required = false) List<Long> idsAtributos) {
+        List<AtributoSala> listaAtributos = null;
+
+        if (idsAtributos != null) {
+            listaAtributos = atributoSalaService.buscarAtributosPorId(idsAtributos);
+        }
+        return blocoAulaService.gerarHeatMap(listaAtributos);
     }
 }

@@ -10,6 +10,7 @@ import com.tcc.backend.enums.EnDiaSemana;
 import com.tcc.backend.exceptions.ResourceNotFoundException;
 import com.tcc.backend.horarioaula.HorarioAula;
 import com.tcc.backend.horarioaula.HorarioAulaRepository;
+import com.tcc.backend.sala.atributosala.AtributoSala;
 
 @Service
 public class BlocoAulaService {
@@ -58,9 +59,16 @@ public class BlocoAulaService {
         return blocoAulaRepository.findByUsuarioResponsavel(responsavel);
     }
 
-    public List<HeatMapDto> gerarHeatMap() {
+    public List<HeatMapDto> gerarHeatMap(List<AtributoSala> listaAtributos) {
         List<HorarioAula> horarios = horarioAulaRepository.findAllByOrderByHorarioInicio();
-        List<BlocoAula> aulas = blocoAulaRepository.findAll();
+        List<BlocoAula> aulas;
+
+        if (listaAtributos == null) {
+            aulas = blocoAulaRepository.findAll();
+        } else {
+            Long qtdeAtributos = Long.valueOf(listaAtributos.size());
+            aulas = blocoAulaRepository.findByFiltrosMatchAll(listaAtributos, qtdeAtributos);
+        }
 
         List<HeatMapDto> heatMap = new ArrayList<>();
 
@@ -68,6 +76,7 @@ public class BlocoAulaService {
             HeatMapDto heatMapHorario = new HeatMapDto();
             List<HeatMapDetalhe> listaDetalhes = new ArrayList<>();
             heatMapHorario.setNomeHorario(horario.getNome());
+            int soma = 0;
             for (EnDiaSemana dia : EnDiaSemana.values()) {
                 HeatMapDetalhe detalhe = new HeatMapDetalhe();
                 detalhe.setDiaSemana(dia.getDescricao());
@@ -79,8 +88,10 @@ public class BlocoAulaService {
                     }
                 });
                 listaDetalhes.add(detalhe);
+                soma += detalhe.getContagem();
             }
             heatMapHorario.setListaDetalhes(listaDetalhes);
+            heatMapHorario.setMedia((float) soma / 5);
             heatMap.add(heatMapHorario);
         });
         return heatMap;

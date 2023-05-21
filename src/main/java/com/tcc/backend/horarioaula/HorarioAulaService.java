@@ -15,7 +15,7 @@ public class HorarioAulaService {
     private HorarioAulaRepository horarioAulaRepository;
 
     public List<HorarioAula> listarTodos() {
-        return horarioAulaRepository.findAll();
+        return horarioAulaRepository.findAllByOrderByHorarioInicio();
     }
 
     public HorarioAula criarHorarioAula(HorarioAula horarioAula) {

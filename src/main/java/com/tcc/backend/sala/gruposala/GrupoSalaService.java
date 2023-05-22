@@ -33,7 +33,16 @@ public class GrupoSalaService {
     }
 
     public GrupoSala atualizarGrupo(Long id, GrupoSala grupoRequest) {
-        return null;
+        GrupoSala grupoSala = grupoRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Agrupamento"));
+
+        if ((!grupoSala.getNome().equals(grupoRequest.getNome()))
+                && (!grupoRepository.findByNomeIgnoreCase(grupoRequest.getNome()).isEmpty())) {
+            throw new ResourceAlreadyExists("Agrupamento", "nome", grupoRequest.getNome());
+        }
+        grupoSala.setNome(grupoRequest.getNome());
+
+        return grupoRepository.save(grupoSala);
     }
 
     public void deletarGrupo(Long id) {

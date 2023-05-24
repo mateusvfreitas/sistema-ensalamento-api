@@ -25,6 +25,17 @@ public class BlocoAulaService {
         return blocoAulaRepository.findAll();
     }
 
+    public List<BlocoAula> listarAulasFiltros(String responsavel, List<AtributoSala> filtroAtributos,
+            EnDiaSemana diaSemana, Boolean isMatchAll) {
+        if (Boolean.TRUE.equals(isMatchAll) && filtroAtributos != null) {
+            Long qtdeAtributos = Long.valueOf(filtroAtributos.size());
+            return blocoAulaRepository.findByFiltrosAndUsuarioMatchAll(responsavel, filtroAtributos,
+                    diaSemana,
+                    2 * qtdeAtributos);
+        }
+        return blocoAulaRepository.findByUsuarioResponsavelGeneric(responsavel, filtroAtributos, diaSemana);
+    }
+
     public BlocoAula criarBlocoAula(BlocoAula blocoAula) {
         return blocoAulaRepository.save(blocoAula);
     }
@@ -55,9 +66,9 @@ public class BlocoAulaService {
         blocoAulaRepository.deleteById(id);
     }
 
-    public List<BlocoAula> findByUsuarioResponsavel(String responsavel) {
-        return blocoAulaRepository.findByUsuarioResponsavel(responsavel);
-    }
+    // public List<BlocoAula> findByUsuarioResponsavel(String responsavel) {
+    // return blocoAulaRepository.findByUsuarioResponsavel(responsavel);
+    // }
 
     public List<HeatMapDto> gerarHeatMap(List<AtributoSala> listaAtributos) {
         List<HorarioAula> horarios = horarioAulaRepository.findAllByOrderByHorarioInicio();

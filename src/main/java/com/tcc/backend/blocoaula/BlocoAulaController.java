@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.tcc.backend.enums.EnDiaSemana;
 import com.tcc.backend.sala.atributosala.AtributoSala;
 import com.tcc.backend.sala.atributosala.AtributoSalaService;
 
@@ -36,13 +37,25 @@ public class BlocoAulaController {
     private ModelMapper modelMapper;
 
     @GetMapping
-    public List<BlocoAulaDto> listarTodos(@RequestParam(value = "responsavel", required = false) String responsavel) {
+    public List<BlocoAulaDto> listarTodos(@RequestParam(value = "responsavel", required = false) String responsavel,
+            @RequestParam(value = "atributo", required = false) List<Long> idsAtributos,
+            @RequestParam(value = "diaSemana", required = false) EnDiaSemana diaSemana,
+            @RequestParam(value = "isMatchAll", required = false) Boolean isMatchAll) {
         List<BlocoAula> blocoAulaEntidade;
-        if (responsavel != null) {
-            blocoAulaEntidade = blocoAulaService.findByUsuarioResponsavel(responsavel);
-        } else {
-            blocoAulaEntidade = blocoAulaService.listarTodos();
+        List<AtributoSala> listaAtributos = null;
+        EnDiaSemana dia = null;
+        if (idsAtributos != null) {
+            listaAtributos = atributoSalaService.buscarAtributosPorId(idsAtributos);
         }
+        if (diaSemana != null) {
+            dia = diaSemana;
+        }
+        // if (responsavel != null) {
+        // blocoAulaEntidade = blocoAulaService.findByUsuarioResponsavel(responsavel);
+        // } else {
+        // blocoAulaEntidade = blocoAulaService.listarTodos();
+        // }
+        blocoAulaEntidade = blocoAulaService.listarAulasFiltros(responsavel, listaAtributos, dia, isMatchAll);
 
         return blocoAulaEntidade.stream().map(blocoAula -> modelMapper.map(blocoAula, BlocoAulaDto.class))
                 .collect(Collectors.toList());

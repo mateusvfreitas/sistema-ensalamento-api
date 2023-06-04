@@ -29,9 +29,13 @@ public class BlocoAulaService {
             EnDiaSemana diaSemana, Boolean isMatchAll) {
         if (Boolean.TRUE.equals(isMatchAll) && filtroAtributos != null) {
             Long qtdeAtributos = Long.valueOf(filtroAtributos.size());
-            return blocoAulaRepository.findByFiltrosAndUsuarioMatchAll(responsavel, filtroAtributos,
-                    diaSemana,
-                    2 * qtdeAtributos);
+            if (responsavel != null) {
+                return blocoAulaRepository.findByFiltrosAndUsuarioMatchAll(responsavel, filtroAtributos,
+                        diaSemana,
+                        qtdeAtributos);
+            } else {
+                return blocoAulaRepository.findByFiltrosMatchAll(filtroAtributos, diaSemana, qtdeAtributos);
+            }
         }
         return blocoAulaRepository.findByUsuarioResponsavelGeneric(responsavel, filtroAtributos, diaSemana);
     }
@@ -78,7 +82,7 @@ public class BlocoAulaService {
             aulas = blocoAulaRepository.findAll();
         } else {
             Long qtdeAtributos = Long.valueOf(listaAtributos.size());
-            aulas = blocoAulaRepository.findByFiltrosMatchAll(listaAtributos, qtdeAtributos);
+            aulas = blocoAulaRepository.findByFiltrosMatchAll(listaAtributos, null, qtdeAtributos);
         }
 
         List<HeatMapDto> heatMap = new ArrayList<>();

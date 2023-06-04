@@ -27,8 +27,10 @@ public interface BlocoAulaRepository extends JpaRepository<BlocoAula, Long> {
     @Query("SELECT distinct ba FROM BlocoAula ba "
             + "JOIN ba.atributosSala atr "
             + "WHERE ( (:filtroAtributos) is null or atr in (:filtroAtributos) ) "
+            + "AND ( :filtroDiaSemana is null or ba.diaSemana = :filtroDiaSemana ) "
             + "GROUP BY ba HAVING COUNT(ba) = :qtdeAtributos ")
     List<BlocoAula> findByFiltrosMatchAll(@Param("filtroAtributos") List<AtributoSala> filtroAtributos,
+            @Param("filtroDiaSemana") EnDiaSemana filtroDiaSemana,
             @Param("qtdeAtributos") Long qtdeAtributos);
 
     @Query("SELECT distinct ba FROM BlocoAula ba "

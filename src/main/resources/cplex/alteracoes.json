@@ -1,0 +1,16 @@
+[ 
+	{"codigo": "TEST1-S01", "horario": "2M1-2M2-2M3-2M4-2M5-2M6", "salaOriginal": "-", "salaNova": "SL-001"},
+	{"codigo": "TEST10-S01", "horario": "2M1-2M2-2M3-2M4-2M5-2M6", "salaOriginal": "-", "salaNova": "-"},
+	{"codigo": "TEST11-S01", "horario": "2M1-2M2-2M3-2M4-2M5-2M6", "salaOriginal": "-", "salaNova": "-"},
+	{"codigo": "TEST12-S01", "horario": "2M1-2M2-2M3-2M4-2M5-2M6", "salaOriginal": "-", "salaNova": "-"},
+	{"codigo": "TEST13-S01", "horario": "2M1-2M2-2M3-2M4-2M5-2M6", "salaOriginal": "-", "salaNova": "-"},
+	{"codigo": "TEST14-S01", "horario": "2M1-2M2-2M3-2M4-2M5-2M6", "salaOriginal": "-", "salaNova": "-"},
+	{"codigo": "TEST2-S01", "horario": "2M1-2M2-2M3-2M4-2M5-2M6", "salaOriginal": "-", "salaNova": "-"},
+	{"codigo": "TEST3-S01", "horario": "2M1-2M2-2M3-2M4-2M5-2M6", "salaOriginal": "-", "salaNova": "-"},
+	{"codigo": "TEST4-S01", "horario": "2M1-2M2-2M3-2M4-2M5-2M6", "salaOriginal": "-", "salaNova": "-"},
+	{"codigo": "TEST5-S01", "horario": "2M1-2M2-2M3-2M4-2M5-2M6", "salaOriginal": "-", "salaNova": "-"},
+	{"codigo": "TEST6-S01", "horario": "2M1-2M2-2M3-2M4-2M5-2M6", "salaOriginal": "-", "salaNova": "-"},
+	{"codigo": "TEST7-S01", "horario": "2M1-2M2-2M3-2M4-2M5-2M6", "salaOriginal": "-", "salaNova": "-"},
+	{"codigo": "TEST8-S01", "horario": "2M1-2M2-2M3-2M4-2M5-2M6", "salaOriginal": "-", "salaNova": "-"},
+	{"codigo": "TEST9-S01", "horario": "2M1-2M2-2M3-2M4-2M5-2M6", "salaOriginal": "-", "salaNova": "-"}
+]

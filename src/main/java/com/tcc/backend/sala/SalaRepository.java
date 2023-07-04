@@ -35,4 +35,6 @@ public interface SalaRepository extends JpaRepository<Sala, Long> {
             @Param("filtroCapacidade") Integer filtroCapacidade, @Param("filtroGrupos") List<GrupoSala> filtroGrupos,
             @Param("qtdeAtributos") Long qtdeAtributos);
 
+    List<Sala> findByGrupoSalaIn(List<GrupoSala> grupoSalas);
+
 }

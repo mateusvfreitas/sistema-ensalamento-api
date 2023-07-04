@@ -30,8 +30,7 @@ public class BlocoAulaService {
         if (Boolean.TRUE.equals(isMatchAll) && filtroAtributos != null) {
             Long qtdeAtributos = Long.valueOf(filtroAtributos.size());
             if (responsavel != null) {
-                return blocoAulaRepository.findByFiltrosAndUsuarioMatchAll(responsavel, filtroAtributos,
-                        diaSemana,
+                return blocoAulaRepository.findByFiltrosAndUsuarioMatchAll(responsavel, filtroAtributos, diaSemana,
                         qtdeAtributos);
             } else {
                 return blocoAulaRepository.findByFiltrosMatchAll(filtroAtributos, diaSemana, qtdeAtributos);

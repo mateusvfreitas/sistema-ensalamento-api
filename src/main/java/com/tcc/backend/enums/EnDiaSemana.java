@@ -2,9 +2,8 @@ package com.tcc.backend.enums;
 
 public enum EnDiaSemana {
 
-    DOMINGO("Domingo"), SEGUNDA("Segunda"), TERCA("Terça"), QUARTA("Quarta"), QUINTA("Quinta"),
-    SEXTA("Sexta"),
-    SABADO("Sábado");
+    SABADO("Sábado"), DOMINGO("Domingo"), SEGUNDA("Segunda"), TERCA("Terça"), QUARTA("Quarta"), QUINTA("Quinta"),
+    SEXTA("Sexta");
 
     private String descricao;
 

@@ -8,6 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.tcc.backend.enums.EnDiaSemana;
+import com.tcc.backend.sala.Sala;
 import com.tcc.backend.sala.atributosala.AtributoSala;
 
 @Repository
@@ -45,5 +46,7 @@ public interface BlocoAulaRepository extends JpaRepository<BlocoAula, Long> {
             @Param("filtroAtributos") List<AtributoSala> filtroAtributos,
             @Param("filtroDiaSemana") EnDiaSemana filtroDiaSemana,
             @Param("qtdeAtributos") Long qtdeAtributos);
+
+    List<BlocoAula> findBySalaAtual(Sala salaAtual);
 
 }

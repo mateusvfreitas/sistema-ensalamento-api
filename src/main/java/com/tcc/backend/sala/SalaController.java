@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.tcc.backend.ensalamento.EnsalamentoAlteracaoDto;
+import com.tcc.backend.ensalamento.EnsalamentoDto;
 import com.tcc.backend.sala.atributosala.AtributoSala;
 import com.tcc.backend.sala.atributosala.AtributoSalaService;
 import com.tcc.backend.sala.gruposala.GrupoSala;
@@ -88,6 +90,13 @@ public class SalaController {
         }
     }
 
+    @GetMapping("/{id}/ensalamento")
+    public List<EnsalamentoDto> consultaEnsalamentoEspecifico(@PathVariable("id") Long id) {
+        Sala sala = salaService.consultarSalaPorId(id);
+
+        return salaService.consultaEnsalamentoEspecifico(sala);
+    }
+
     @PutMapping("/{id}")
     public ResponseEntity<Object> atualizar(@PathVariable("id") Long id, @RequestBody SalaDto salaDto) {
         try {
@@ -108,5 +117,18 @@ public class SalaController {
         } catch (Exception e) {
             return new ResponseEntity<>(e.getMessage(), null, HttpStatus.EXPECTATION_FAILED);
         }
+    }
+
+    @GetMapping("/alteracoes-ensalamento")
+    public List<EnsalamentoAlteracaoDto> geraAlteracoesEnsalamento(
+            @RequestParam(value = "agrupamento", required = true) List<Long> idsGrupos) {
+        List<GrupoSala> listaGrupos = grupoSalaService.buscarGruposPorId(idsGrupos);
+
+        return salaService.consultaAlteracoesEnsalamento(listaGrupos);
+    }
+
+    @GetMapping("/seila")
+    public List<EnsalamentoAlteracaoDto> getEnsalamento() {
+        return salaService.getEnsalamento();
     }
 }
